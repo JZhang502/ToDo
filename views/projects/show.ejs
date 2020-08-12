@@ -1,0 +1,4 @@
+<h2><%= project.title %> </h2>
+<div>Project Due Date: <%= project.duedate1.toISOString().split('T')[0] %> </div>
+<a href="/projects/<%= project.id %>/edit ">Edit</a>
+<%- include('../partials/deleteForm', {url:`/projects/${project.id}`}) %> 

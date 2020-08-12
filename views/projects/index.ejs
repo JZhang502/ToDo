@@ -1,0 +1,10 @@
+<h2>Search Existing Projects</h2>
+<form action="/projects" method="GET">
+    <label>Title</label>
+    <input type="text" name="title" value="<%= searchOptions.title %> ">
+    <button type="submit">Search</button>
+</form>
+<br>
+<% projects.forEach(project => { %>
+    <div> <a href="/projects/<%= project.id %>"><%= project.title %></a> </div>
+<% }); %> 
