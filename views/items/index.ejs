@@ -1,0 +1,33 @@
+<h2>Search all created items</h2>
+<form action="/items" method="get">
+    <div>
+        <label>Name</label>
+        <input type="text" name="name" value="<%= searchOptions.name %>">
+    </div>
+    <div>
+        <label>Priority Level</label>
+        <select name="priority">
+            <option value="">None</option>
+            <option value="low">Low</option>
+            <option value="regular">Regular</option>
+            <option value="high">High</option>
+        </select>
+    </div>
+    <div>
+        <label>Due After</label>
+        <input type="date" name="dueAfter" value="<%= searchOptions.dueAfter %>">
+    </div>
+    <div>
+        <label>Due Before</label>
+        <input type="date" name="dueBefore" value="<%= searchOptions.dueBefore %>">
+    </div>
+    <button type="submit">Search</button>
+</form>
+<div>
+    <% items.forEach((item, index) =>{ %>
+        <a href="/items/<%= item.id %>"> <%= item.name %> </a>
+        <br>
+        Associated project: <a href="/projects/<%= projects[index].id %>"><%= projects[index].title %></a>
+    <% }) %> 
+    <br>
+</div>

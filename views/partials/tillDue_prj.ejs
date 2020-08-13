@@ -1,0 +1,11 @@
+<% const now = new Date().toISOString() %>
+<% const duedate1 = project.duedate1.toISOString() %>
+<% function secToDays(sec){%>
+    <% var days = Math.floor(sec/86400000) %> 
+    <% return days %> 
+<% } %>   
+<% if(duedate1 >= now){ %> 
+    Project is due in <%= secToDays((project.duedate1- new Date())) %> days
+<% } else{ %> 
+    Prj is over due <%= (new Date() - project.duedate1) %> days
+<% } %> 

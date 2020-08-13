@@ -1,4 +1,9 @@
+<h2>Project Detals</h2>
 <h2><%= project.title %> </h2>
 <div>Project Due Date: <%= project.duedate1.toISOString().split('T')[0] %> </div>
+<div>
+    <%- include('../partials/tillDue_prj.ejs') %> 
+</div>
 <a href="/projects/<%= project.id %>/edit ">Edit</a>
 <%- include('../partials/deleteForm', {url:`/projects/${project.id}`}) %> 
+<a href="/items/new">Create ToDO for this Project</a>

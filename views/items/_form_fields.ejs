@@ -1,0 +1,38 @@
+<div>
+    <label>Name</label>
+    <input type="text" name="name" value="<%= item.name %>">
+</div>
+<div>
+    <label>Associated Project</label>
+    <select name="project">
+        <% projects.forEach(project =>{ %>
+            <% if (project.id === item.project) {%> 
+                <option selected label="<%= project.title %> " value= "<%= project.id %>">
+                    <%= project.title %> 
+                </option>
+            <% } else{ %> 
+                <option label="<%= project.title %> " value= "<%= project.id %>">
+                    <%= project.title %>  
+                </option>
+            <% } %> 
+        <%}) %> 
+    </select>
+</div>
+<div>
+    <label>Due Date</label>
+    <input type="date" name="duedate2" 
+            value="<%= item.duedate2 == null ? '':
+            item.duedate2.toISOString().split('T')[0]%> ">
+</div>
+<div>
+    <label>Priority Level</label>
+    <select name="priority">
+        <option value="low">Low</option>
+        <option value="regular">Regular</option>
+        <option value="high">High</option>
+    </select>
+</div>
+<div>
+    <label>Description</label>
+    <textarea name="description"><%= item.description %> </textarea>
+</div>

@@ -1,0 +1,11 @@
+<% const now = new Date().toISOString() %>
+<% const duedate2 = item.duedate2.toISOString() %>
+<% function secToDays(sec){%>
+    <% var days = Math.floor(sec/86400000) %> 
+    <% return days %> 
+<% } %>   
+<% if(duedate2 >= now){ %> 
+    This is due in <%= secToDays((item.duedate2- new Date())) %> days
+<% } else{ %> 
+    This is over due <%= (new Date() - item.duedate2) %> days
+<% } %> 

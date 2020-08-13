@@ -65,10 +65,13 @@ router.post('/', async (req, res)=>{
 
 //show projects
 router.get('/:id', async (req, res)=>{
+    let projects
     try{
+        projects = await Project.find().sort({duedate1: ''}).exec()
         const project = await Project.findById(req.params.id)
         res.render('projects/show',{
-            project:project
+            project:project,
+            projects:projects
         })
     }catch{
         redirect('/')
@@ -111,7 +114,8 @@ router.delete('/:id', async (req, res)=>{
         //console.log(project)
         await project.remove()
         res.redirect('/projects')
-    }catch{
+    }catch(err){
+        console.log(err)
         if(project == null){
             res.redirect('/')
         }else{

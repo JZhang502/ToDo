@@ -6,8 +6,11 @@
     <title>Simple To-DO List</title>
 </head>
 <body>
+    <%- include('../partials/navBar.ejs') %> 
     <br>
     <%- include ('../partials/errorMessage.ejs') %>
+    <br>
+    <%- include('../partials/sidebar.ejs'), {projectss:projectss} %>
     <%- body %>
     <br> 
 </body>

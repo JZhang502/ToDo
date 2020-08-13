@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const Item = require('./items')
 const projectSchema = new mongoose.Schema({
     title:{
         type: String,
@@ -13,4 +13,17 @@ const projectSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('project', projectSchema)
+projectSchema.pre('remove', function(next){
+    mongoose.model('Items').find({project: this.id}, (err, items)=>{
+        if(err){
+            next(err)
+        }
+        else if(items.length > 0){
+            next(new Error('This project still have toDos'))
+            errorMessage = 'This project still have toDos'
+        }else{
+            next()
+        }
+    })
+})
+module.exports = mongoose.model('Project', projectSchema)

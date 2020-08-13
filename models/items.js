@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-//cosnt {model} = require('./project')
+const {model} = require('./project')
 
 const itemsSchema = new mongoose.Schema({
     name:{
@@ -9,17 +9,21 @@ const itemsSchema = new mongoose.Schema({
     duedate2:{
         type:Date,
         required:true,
-        default:Date.now
+        default:Date.now,
+        min: Date.now
     },
     priority:{
         type: String,
         required:true
     },
-    project :{
+    project:{
         type: mongoose.Schema.Types.ObjectId,
         required:true,
-        ref: 'project'
+        ref: 'Project'
+    },
+    description:{
+        type: String
     }
 })
 
-module.exports = mongoose.model('items', itemsSchema)
+module.exports = mongoose.model('Items', itemsSchema)

@@ -1,6 +1,29 @@
 <div class="sidenav">
+    SideBar Top 6 Upcoming prjs
+    <br>
     <a href="/projects/new">New Project</a>
-    <% projects.forEach(project => { %>
-        <div><%= project.title %> </div>
-    <% }); %> 
+    <br>
+    Upcoming Projects:
+    <% function secToDays(sec){%>
+        <% var days = Math.floor(sec/86400000) %> 
+        <% return days %> 
+    <% } %>
+    <% if(projectss.length < 1 || projectss == undefined) {%>
+        <br>
+        No Upcoming Projects, please create new projects 
+    <%}  %>
+    <% if(projectss.length > 0){ %>
+        <% projectss.forEach(project => { %>
+            <div><a href="/projects/<%= project.id %>"><%= project.title %></a>
+            <% let duedate1 = project.duedate1.toISOString() %>
+            <% let now = new Date().toISOString() %>
+            <% if(duedate1 >= now){ %> 
+                due in <%= secToDays((project.duedate1- new Date())) %> days
+            <% } else{ %> 
+                over due <%= (now - duedate1) %> days
+            <% } %> 
+        <% }); %> 
+        </div>
+    <% } %>   
+
 </div>

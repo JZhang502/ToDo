@@ -1,0 +1,17 @@
+<div>
+    <h2>Todo Detail Page</h2>
+    <h2>Project Name:<%= item.project.title %></h2>
+    <h3><%-include('../partials/tillDue_prj.ejs')  %> </h3>
+</div>
+<div><h3>ToDo: <%= item.name %> </h3></div>
+<div><%- include('../partials/tillDue_item.ejs') %> </div>
+<br>
+<div>Due Date: <%= item.duedate2.toDateString() %> </div>
+<br>
+<div>The priority level is <%= item.priority %> </div>
+<br>
+<div>Description: <%= item.description %> </div>
+<a href="/items/<%= item.id %>/edit ">Edit</a>
+<br>
+<a href="/projects/<%= item.project.id %> ">View Associated Project</a>
+<%- include('../partials/deleteForm', {url: `/items/${item.id}`}) %> 
