@@ -3,5 +3,13 @@
     <h3>By Jack Zhang</h3>
 </header>
 <div>
-
+<% if(items.length > 0){ %> 
+    <h3>Top three ToDos</h3>
+    <% items.forEach(item =>{ %>
+        <a href="/items/<%= item.id %>" ><%= item.name %> </a>
+        <%- include('./partials/tillDue_item.ejs',{item:item}) %> 
+    <% }) %>
+<% }else{ %> 
+    No Upcoming ToDos
+<% } %> 
 </div> 

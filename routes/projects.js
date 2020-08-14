@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Project = require('../models/project')
+const Item = require('../models/items')
 
 //Show all projects
 router.get('/', async (req, res)=>{
@@ -67,11 +68,11 @@ router.post('/', async (req, res)=>{
 router.get('/:id', async (req, res)=>{
     let projects
     try{
-        projects = await Project.find().sort({duedate1: ''}).exec()
         const project = await Project.findById(req.params.id)
+        const items = await Item.find({project: project.id}).sort({duedate2: ''}).exec()
         res.render('projects/show',{
             project:project,
-            projects:projects
+            prjToDo:items
         })
     }catch{
         redirect('/')

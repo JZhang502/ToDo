@@ -3,7 +3,7 @@
     <h2>Project Name:<%= item.project.title %></h2>
     <h3><%-include('../partials/tillDue_prj.ejs')  %> </h3>
 </div>
-<div><h3>ToDo: <%= item.name %> </h3></div>
+<div><h3>Title: <%= item.name %> </h3></div>
 <div><%- include('../partials/tillDue_item.ejs') %> </div>
 <br>
 <div>Due Date: <%= item.duedate2.toDateString() %> </div>

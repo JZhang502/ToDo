@@ -6,4 +6,14 @@
 </div>
 <a href="/projects/<%= project.id %>/edit ">Edit</a>
 <%- include('../partials/deleteForm', {url:`/projects/${project.id}`}) %> 
-<a href="/items/new">Create ToDO for this Project</a>
+<a href="/items/new/<%= project.id %> ">Create ToDO for this Project</a>
+<br>
+<div>
+<% if(prjToDo.length > 0){ %> 
+    <h3>ToDos Associated</h3>
+    <% prjToDo.forEach(item =>{ %>
+        <%= item.name %> 
+        <%- include('../partials/tillDue_item.ejs',{item:item}) %> 
+    <% }) %>
+<% } %> 
+</div>

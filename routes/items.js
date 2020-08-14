@@ -39,6 +39,12 @@ router.get('/new', async (req, res)=>{
     renderNewPage(res, new Item())
 })
 
+router.get('/new/:id', (req, res)=>{
+    const id = req.params.id
+    renderNewPage(res, new Item(), false, id)
+
+})
+
 //create item
 router.post('/', async(req, res)=>{
     const item = new Item({
@@ -106,15 +112,21 @@ router.delete('/:id', async (req, res)=>{
         }
     }
 })
-async function renderNewPage(res, item, hasError = false){
-    renderFormPage(res, item, 'new', hasError)
+async function renderNewPage(res, item, hasError = false, id = null){
+    renderFormPage(res, item, 'new', hasError, id)
 }
-async function renderEditPage(res, item, hasError = false){
-    renderFormPage(res, item, 'edit', hasError)
+async function renderEditPage(res, item, hasError = false, id = null){
+    renderFormPage(res, item, 'edit', hasError, id)
 }
-async function renderFormPage(res, item, form, hasError){
+async function renderFormPage(res, item, form, hasError, id){
     try{
-        const projects = await Project.find({})
+        let projects
+        if(id === null){
+            projects = await Project.find({})
+        }if(id != null){
+            projects = []
+            projects[0] = await Project.findById(id)
+        }
         const params ={
             projects:projects,
             item:item
