@@ -1,13 +1,16 @@
 <header class="main header">
-    <h1>Welcome to a simple Project Manager</h1>
-    <h3>By Jack Zhang</h3>
+    <h1 class="page-header">Welcome to a simple Project Manager</h1>
+    <h3 >By Jack Zhang</h3>
 </header>
 <div>
 <% if(items.length > 0){ %> 
-    <h3>Top three ToDos</h3>
+    <h3 class="page-header">Top three ToDos</h3>
     <% items.forEach(item =>{ %>
-        <a href="/items/<%= item.id %>" ><%= item.name %> </a>
+        <label><%= item.name %></label>
         <%- include('./partials/tillDue_item.ejs',{item:item}) %> 
+        <div class="btn-row">
+            <a class="btn btn-primary" href="/items/<%= item.id %>">Details</a>
+        </div>
     <% }) %>
 <% }else{ %> 
     No Upcoming ToDos

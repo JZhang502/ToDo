@@ -1,6 +1,6 @@
 <div>
-    <h2>Todo Detail Page</h2>
-    <h2>Project Name:<%= item.project.title %></h2>
+    <h2 class="page-header">Todo Detail Page</h2>
+    <h3>Project Name:<%= item.project.title %></h3>
     <h3><%-include('../partials/tillDue_prj.ejs')  %> </h3>
 </div>
 <div><h3>Title: <%= item.name %> </h3></div>
@@ -11,7 +11,8 @@
 <div>The priority level is <%= item.priority %> </div>
 <br>
 <div>Description: <%= item.description %> </div>
-<a href="/items/<%= item.id %>/edit ">Edit</a>
-<br>
-<a href="/projects/<%= item.project.id %> ">View Associated Project</a>
+<div class="btn-row">
+    <a class="btn btn-primary" href="/items/<%= item.id %>/edit ">Edit</a>
+    <a class="btn btn-primary" href="/projects/<%= item.project.id %> ">View Associated Project</a>
+</div>
 <%- include('../partials/deleteForm', {url: `/items/${item.id}`}) %> 

@@ -5,7 +5,9 @@
     <% return days %> 
 <% } %>   
 <% if(duedate1 >= now){ %> 
-    Project is due in <%= secToDays((project.duedate1- new Date())) %> days
+<div>
+    Due in <%= secToDays((project.duedate1- new Date())) %> days
+</div>
 <% } else{ %> 
-    Prj is over due <%= (new Date() - project.duedate1) %> days
+    <div> Prj is over due <%= (new Date() - project.duedate1) %> days </div>
 <% } %> 

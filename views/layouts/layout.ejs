@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <title>Simple To-DO List</title>
 </head>
 <body>
-    <%- include('../partials/navBar.ejs') %> 
-    <br>
-    <%- include ('../partials/errorMessage.ejs') %>
-    <br>
-    <%- include('../partials/sidebar.ejs'), {projectss:projectss} %>
-    <%- body %>
-    <br> 
+    <div class="container">
+        <%- include('../partials/navBar.ejs') %> 
+        <div class="inner-container">
+            <%- include ('../partials/errorMessage.ejs') %>
+            <%- include('../partials/sidebar.ejs'), {projectss:projectss} %>
+            <%- body %>
+        </div>
+    </div>
 </body>
 </html>

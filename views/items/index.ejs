@@ -1,4 +1,4 @@
-<h2>Search all created items</h2>
+<h2 class="page-header">Search all created items</h2>
 <form action="/items" method="get">
     <div>
         <label>Name</label>
@@ -25,9 +25,11 @@
 </form>
 <div>
     <% items.forEach((item, index) =>{ %>
-        <a href="/items/<%= item.id %>"> <%= item.name %> </a>
-        <br>
-        Associated project: <a href="/projects/<%= projects[index].id %>"><%= projects[index].title %></a>
-    <% }) %> 
+        <div><%= item.name %></div>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="/items/<%= item.id %>"> View </a>
+            Associated project: <a class="btn btn-primary" href="/projects/<%= projects[index].id %>"><%= projects[index].title %></a>
+        <% }) %> 
+        </div>
     <br>
 </div>
