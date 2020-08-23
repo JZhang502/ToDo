@@ -1,6 +1,10 @@
-<h2 class="page-header">Edit Items</h2>
-<form action="/items/<%= item.id %>?_method=PUT" method="POST">
-    <%- include('_form_fields') %> 
-    <a href="/items">Cancel</a>
-    <button type="submit">Update</button>
-</form>
+<div class="item2">
+    <h2 class="page-header">Edit Items</h2>
+    <form action="/items/<%= item.id %>?_method=PUT" method="POST">
+        <%- include('_form_fields') %> 
+        <div class="form-row form-row-end btn-row">
+            <a class="btn btn-danger" href="/items">Cancel</a>
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </form>
+</div>

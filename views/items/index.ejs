@@ -1,35 +1,44 @@
-<h2 class="page-header">Search all created items</h2>
-<form action="/items" method="get">
-    <div>
-        <label>Name</label>
-        <input type="text" name="name" value="<%= searchOptions.name %>">
-    </div>
-    <div>
-        <label>Priority Level</label>
-        <select name="priority">
-            <option value="">None</option>
-            <option value="low">Low</option>
-            <option value="regular">Regular</option>
-            <option value="high">High</option>
-        </select>
-    </div>
-    <div>
-        <label>Due After</label>
-        <input type="date" name="dueAfter" value="<%= searchOptions.dueAfter %>">
-    </div>
-    <div>
-        <label>Due Before</label>
-        <input type="date" name="dueBefore" value="<%= searchOptions.dueBefore %>">
-    </div>
-    <button type="submit">Search</button>
-</form>
-<div>
-    <% items.forEach((item, index) =>{ %>
-        <div><%= item.name %></div>
-        <div class="btn-row">
-            <a class="btn btn-primary" href="/items/<%= item.id %>"> View </a>
-            Associated project: <a class="btn btn-primary" href="/projects/<%= projects[index].id %>"><%= projects[index].title %></a>
-        <% }) %> 
+<div class="item2">
+    <h2 class="page-header">Search all created ToDos</h2>
+    <form action="/items" method="get">
+        <div class="form-row">
+            <div class="form-item">
+                <label>Name</label>
+                <input type="text" name="name" value="<%= searchOptions.name %>">
+            </div>
+            <div class="form-item">
+                <label>Priority Level</label>
+                <select name="priority">
+                    <option value="">None</option>
+                    <option value="low">Low</option>
+                    <option value="regular">Regular</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
         </div>
+        <div class="form-row">
+            <div class="form-item">
+                <label>Due After</label>
+                <input type="date" name="dueAfter" value="<%= searchOptions.dueAfter %>">
+            </div>
+            <div class="form-item">
+                <label>Due Before</label>
+                <input type="date" name="dueBefore" value="<%= searchOptions.dueBefore %>">
+            </div>
+        </div>
+
+        <div class="form-row form-row-end"><button class="btn btn-primary" type="submit">Search</button></div>
+    </form>
     <br>
+    <div>
+        <% items.forEach((item, index) =>{ %>
+            <div class="project-row">
+                <div class="project-name"><%= item.name %></div>
+                <div class="btn-row btn-prj">
+                    <a class="btn btn-primary" href="/items/<%= item.id %>"> View </a>
+                </div>
+            </div>
+            <% }) %> 
+        <br>
+    </div>
 </div>

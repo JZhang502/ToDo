@@ -1,18 +1,30 @@
-<div>
-    <h2 class="page-header">Todo Detail Page</h2>
-    <h3>Project Name:<%= item.project.title %></h3>
-    <h3><%-include('../partials/tillDue_prj.ejs')  %> </h3>
+<div class="item2">
+    <div>
+        <h2 class="page-header">Todo Detail Page</h2>
+        <h3>Project Name:<%= item.project.title %></h3>
+        <h3><%-include('../partials/tillDue_prj.ejs')  %> </h3>
+    </div>
+    <div><h3>Title: <%= item.name %> </h3></div>
+    <div><%- include('../partials/tillDue_item.ejs') %> </div>
+    <br>
+    <div>Due Date: <%= item.duedate2.toDateString() %> </div>
+    <br>
+    <div>The priority level is 
+        <% if(item.priority == 'low'){ %> 
+            <label class="priority-low"><%= item.priority %></label>
+        <% } %>
+        <% if(item.priority == 'regular'){ %> 
+            <label class="priority-med"><%= item.priority %></label>
+        <% } %>
+        <% if(item.priority == 'high'){ %> 
+            <label class="priority-high"><%= item.priority %></label>
+        <% } %>
+    </div>
+    <br>
+    <div>Description: <%= item.description %> </div>
+    <div class="btn-row">
+        <a class="btn btn-primary" href="/items/<%= item.id %>/edit ">Edit</a>
+        <a class="btn btn-primary" href="/projects/<%= item.project.id %> ">View Associated Project</a>
+    </div>
+    <%- include('../partials/deleteForm', {url: `/items/${item.id}`}) %> 
 </div>
-<div><h3>Title: <%= item.name %> </h3></div>
-<div><%- include('../partials/tillDue_item.ejs') %> </div>
-<br>
-<div>Due Date: <%= item.duedate2.toDateString() %> </div>
-<br>
-<div>The priority level is <%= item.priority %> </div>
-<br>
-<div>Description: <%= item.description %> </div>
-<div class="btn-row">
-    <a class="btn btn-primary" href="/items/<%= item.id %>/edit ">Edit</a>
-    <a class="btn btn-primary" href="/projects/<%= item.project.id %> ">View Associated Project</a>
-</div>
-<%- include('../partials/deleteForm', {url: `/items/${item.id}`}) %> 

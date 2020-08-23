@@ -1,29 +1,29 @@
-<div class="sidenav">
-    SideBar
-    <div class="btn-row">
+<div class="btn-row">
     <a class="btn btn-primary" href="/projects/new">New Project</a>
-    </div>
-    Upcoming Projects:
-    <% function secToDays(sec){%>
-        <% var days = Math.floor(sec/86400000) %> 
-        <% return days %> 
-    <% } %>
-    <% if(projectss.length < 1 || projectss == undefined) {%>
-        <br>
-        No Upcoming Projects, please create new projects 
-    <%}  %>
-    <% if(projectss.length > 0){ %>
-        <% projectss.forEach(project => { %>
-            <div><a href="/projects/<%= project.id %>"><%= project.title %></a>
-            <% let duedate1 = project.duedate1.toISOString() %>
-            <% let now = new Date().toISOString() %>
-            <% if(duedate1 >= now){ %> 
-                due in <%= secToDays((project.duedate1- new Date())) %> days
-            <% } else{ %> 
-                over due <%= (now - duedate1) %> days
-            <% } %> 
-        <% }); %> 
-        </div>
-    <% } %>   
-
 </div>
+<br>
+Upcoming Projects:
+<% function secToDays(sec){%>
+    <% var days = Math.floor(sec/86400000) %> 
+    <% return days %> 
+<% } %>
+<% if(projectss.length < 1 || projectss == undefined) {%>
+    <br>
+    No Upcoming Projects, please create new projects 
+<%}  %>
+<% if(projectss.length > 0){ %>
+    <div>
+        <% projectss.forEach(project => { %>
+            <br>
+                <a class="btn-small btn-primary " href="/projects/<%= project.id %>"><%= project.title %></a>
+                <% let duedate1 = project.duedate1.toISOString() %>
+                <% let now = new Date().toISOString() %>
+                <% if(duedate1 >= now){ %> 
+                    <br>
+                    due in <%= secToDays((project.duedate1- new Date())) %> days
+                <% } else{ %> 
+                    over due <%= (now - duedate1) %> days
+                <% } %> 
+        <% }); %> 
+    </div>
+<% } %>   

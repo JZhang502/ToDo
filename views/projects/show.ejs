@@ -1,23 +1,31 @@
-<h2 class="page-header">Project Detals</h2>
-<h2><%= project.title %> </h2>
-<div>Project Due Date: <%= project.duedate1.toISOString().split('T')[0] %> </div>
-<div>
-    <%- include('../partials/tillDue_prj.ejs') %> 
-</div>
-<div class="btn-row">
-    <a class="btn btn-primary" href="/projects/<%= project.id %>/edit ">Edit</a>
-    <%- include('../partials/deleteForm', {url:`/projects/${project.id}`}) %> 
-    <a class="btn btn-primary" href="/items/new/<%= project.id %> ">Create ToDO</a>
-</div>
-<div>
-<% if(prjToDo.length > 0){ %> 
-    <h3>ToDos Associated</h3>
-    <% prjToDo.forEach(item =>{ %>
-        <%= item.name %> 
-        <%- include('../partials/tillDue_item.ejs',{item:item}) %> 
-        <div class="btn-row">
-            <a class="btn btn-primary" href="/items/<%= item.id %>">Details</a>
+<div class="item2">
+    <h2 class="page-header">Project Detals</h2>
+    <h2><%= project.title %> </h2>
+    <div>Project Due Date: <%= project.duedate1.toISOString().split('T')[0] %> </div>
+    <div>
+        <%- include('../partials/tillDue_prj.ejs') %> 
+    </div>
+    <br>
+    <div class="btn-row">
+        <a class="btn btn-primary" href="/projects/<%= project.id %>/edit ">Edit</a>
+        <%- include('../partials/deleteForm', {url:`/projects/${project.id}`}) %> 
+        <a class="btn btn-primary" href="/items/new/<%= project.id %> ">Create ToDO</a>
+    </div>
+    <div>
+    <% if(prjToDo.length > 0){ %> 
+        <h3>ToDos Associated</h3>
+        <div class="flex-container">
+            <% prjToDo.forEach(item =>{ %>
+                <div class="item3">
+                    <%= item.name %> 
+                    <hr>
+                    <%- include('../partials/tillDue_item.ejs',{item:item}) %>
+                    <div class="btn-row">
+                        <a class="btn-small btn-primary" href="/items/<%= item.id %>">Details</a>
+                    </div>
+                </div>
+            <% }) %>
         </div>
-    <% }) %>
-<% } %> 
+    <% } %> 
+    </div>
 </div>

@@ -1,38 +1,44 @@
-<div>
-    <label>Name</label>
-    <input type="text" name="name" value="<%= item.name %>">
+<div class="form-row">
+    <div class="form-item">
+        <label>Name</label>
+        <input type="text" name="name" value="<%= item.name %>">
+    </div>
+    <div class="form-item">
+        <label>Associated Project</label>
+        <select name="project">
+            <% projects.forEach(project =>{ %>
+                <% if (project.id === item.project) {%> 
+                    <option selected label="<%= project.title %> " value= "<%= project.id %>">
+                        <%= project.title %> 
+                    </option>
+                <% } else{ %> 
+                    <option label="<%= project.title %> " value= "<%= project.id %>">
+                        <%= project.title %>  
+                    </option>
+                <% } %> 
+            <%}) %> 
+        </select>
+    </div>
 </div>
-<div>
-    <label>Associated Project</label>
-    <select name="project">
-        <% projects.forEach(project =>{ %>
-            <% if (project.id === item.project) {%> 
-                <option selected label="<%= project.title %> " value= "<%= project.id %>">
-                    <%= project.title %> 
-                </option>
-            <% } else{ %> 
-                <option label="<%= project.title %> " value= "<%= project.id %>">
-                    <%= project.title %>  
-                </option>
-            <% } %> 
-        <%}) %> 
-    </select>
-</div>
-<div>
-    <label>Due Date</label>
+
+<div class="form-row">
+    <div class="form-item">
+        <label>Due Date</label>
     <input type="date" name="duedate2" 
             value="<%= item.duedate2 == null ? '':
             item.duedate2.toISOString().split('T')[0]%> ">
+    </div>
+    <div class="form-item">
+        <label>Priority Level</label>
+        <select name="priority">
+            <option class="priority-low" value="low">Low</option>
+            <option class="priority-med" value="regular">Regular</option>
+            <option class="priority-high" value="high">High</option>
+        </select>
+    </div>
 </div>
-<div>
-    <label>Priority Level</label>
-    <select name="priority">
-        <option value="low">Low</option>
-        <option value="regular">Regular</option>
-        <option value="high">High</option>
-    </select>
-</div>
-<div>
-    <label>Description</label>
-    <textarea name="description"><%= item.description %> </textarea>
+
+<div class="form-row">
+    <div class="form-item"><label>Description</label>
+    <textarea name="description"><%= item.description %></textarea> </div>
 </div>

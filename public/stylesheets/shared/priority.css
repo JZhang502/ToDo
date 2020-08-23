@@ -1,0 +1,10 @@
+.priority-low{
+    color: green;
+}
+.priority-med{
+    color: var(--color-text-light) ;
+}
+
+.priority-high{
+    color: red;
+}

@@ -1,10 +1,12 @@
-<div>
-<label>Title</label>
-<input type="text" name="title" value="<%= project.title %>">
-</div>
-<div>
-<label>Due Date</label>
-<input type="date" name="duedate1"
-        value="<%= project.duedate1 == null ? '':
-        project.duedate1.toISOString().split('T')[0] %> ">
+<div class="form-row">
+        <div class="form-item">
+                <label>Title</label>
+                <input type="text" name="title" value="<%= project.title %>">  
+        </div>
+        <div class="form-item">
+                <label>Due Date</label>
+                <input type="date" name="duedate1"
+                value="<%= project.duedate1 == null ? '':
+                project.duedate1.toISOString().split('T')[0] %> ">
+        </div>
 </div>

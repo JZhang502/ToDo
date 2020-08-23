@@ -1,18 +1,30 @@
-<header class="main header">
-    <h1 class="page-header">Welcome to a simple Project Manager</h1>
-    <h3 >By Jack Zhang</h3>
-</header>
-<div>
-<% if(items.length > 0){ %> 
-    <h3 class="page-header">Top three ToDos</h3>
-    <% items.forEach(item =>{ %>
-        <label><%= item.name %></label>
-        <%- include('./partials/tillDue_item.ejs',{item:item}) %> 
-        <div class="btn-row">
-            <a class="btn btn-primary" href="/items/<%= item.id %>">Details</a>
+<div class="item2">
+    <header class="main header">
+        <h1 class="page-header">Welcome to a simple Project Manager</h1>
+        <h3 >By Jack Zhang</h3>
+    </header>
+    <% if(items.length > 0){ %> 
+        <h3 class="page-header">Top three ToDos</h3>
+        <div class="timeline">
+            <% let count = 0 %> 
+            <% items.forEach(item =>{ %>
+                <% if(count == 1){ %>
+                    <div class="container right">
+                    <% }else{ %> 
+                    <div class="container left">
+                    <% } %> 
+                <div class="content">
+                    <h2><%= item.name %></h2>
+                    <%- include('./partials/tillDue_item.ejs',{item:item}) %> 
+                    <div class="btn-row">
+                        <a class="btn-small btn-primary" href="/items/<%= item.id %>">Details</a>
+                    </div>
+                </div>
+                </div>
+                <% count++ %>
+            <% }) %>
         </div>
-    <% }) %>
-<% }else{ %> 
-    No Upcoming ToDos
-<% } %> 
-</div> 
+    <% }else{ %> 
+        No Upcoming ToDos
+    <% } %> 
+</div>

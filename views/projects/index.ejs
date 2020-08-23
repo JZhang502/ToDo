@@ -1,11 +1,29 @@
+<div class="item2">
 <h2 class="page-header">Search Existing Projects</h2>
 <form action="/projects" method="GET">
-    <label>Title</label>
-    <input type="text" name="title" value="<%= searchOptions.title %> ">
-    <button type="submit">Search</button>
+    <div class="form-row">
+        <div class="form-item">
+            <label>Title</label>
+            <input type="text" name="title" value="<%= searchOptions.title %>">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-item">
+            <label>Due After</label>
+            <input type="date" name="dueAfter" value="<%= searchOptions.dueAfter %>">
+        </div>
+        <div class="form-item">
+            <label>Due Before</label>
+            <input type="date" name="dueBefore" value="<%= searchOptions.dueBefore %>">
+        </div>
+    </div>
+    <div class="form-row form-row-end"><button class="btn btn-primary" type="submit">Search</button></div>
 </form>
 <br>
-<% projects.forEach(project => { %>
-    <label><%= project.title %></label>
-    <div class="btn-row"> <a class="btn btn-primary" href="/projects/<%= project.id %>">View</a> </div>
-<% }); %> 
+    <% projects.forEach(project => { %>
+        <div class="project-row">
+            <div class="project-name"><%= project.title %></div>
+            <div class="btn-row btn-prj"> <a class="btn btn-primary" href="/projects/<%= project.id %>">View</a> </div>
+        </div>
+    <% }); %> 
+</div>

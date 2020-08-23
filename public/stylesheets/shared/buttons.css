@@ -21,6 +21,22 @@
     text-align: center;
 }
 
+.btn-small{
+    border: .5px solid var(--color-btn-border) ;
+    border-radius: .5rem;
+    padding: .2rem .4rem;
+    font-size: 1rem;
+    font-family: 'Gotham Rounded';
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin-top: .5rem;
+    display: inline-flex;
+}
+
+.btn-small::before{
+    margin-top: 100px;
+}
 .btn-row{
     display: flex;
     align-items: flex-start;
@@ -48,4 +64,8 @@
 .btn-danger:hover{
     color: var(--color-btn-danger-text-dark);
     background-color: var(--color-btn-danger-background-dark);
+}
+
+.btn-prj{
+    align-items: flex-end;
 }

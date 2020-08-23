@@ -5,12 +5,19 @@ const Item = require('../models/items')
 
 //Show all projects
 router.get('/', async (req, res)=>{
-    let searchOptions = {}
+    let query = Project.find()
     if (req.query.title != null && req.query.title != ''){
-        searchOptions.title = new RegExp(req.query.title, 'i')
+        query = query.regex('title', new RegExp(req.query.title, 'i')) 
     }
+    if(req.query.dueAfter != null && req.query.dueAfter != ''){
+        query = query.gte('duedate1', req.query.dueAfter)
+    }
+    if(req.query.dueBefore != null && req.query.dueBefore != ''){
+        query = query.lte('duedate1', req.query.dueBefore)
+    }
+    const projects = await query.exec()
     try{
-        const projects = await Project.find(searchOptions)
+        // const projects = await Project.find(searchOptions)
         res.render('projects/index',{
             projects:projects,
             searchOptions: req.query

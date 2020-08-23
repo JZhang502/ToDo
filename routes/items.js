@@ -20,7 +20,6 @@ router.get('/', async (req, res)=>{
     }
     const items = await query.exec()
     let projects = []
-    let title = []
     for (var i = 0; i < items.length; i++){
         projects[i] = await Project.findById(items[i].project).exec()
     }

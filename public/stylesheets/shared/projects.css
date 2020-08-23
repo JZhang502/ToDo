@@ -1,0 +1,10 @@
+.project-row{
+    display: flex;
+    margin-bottom: 1rem;
+    margin-left: .5rem;
+    justify-content: space-between;
+}
+
+.project-name{
+    font-size: 1.5rem;
+}

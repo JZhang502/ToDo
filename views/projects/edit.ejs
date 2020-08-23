@@ -1,7 +1,11 @@
-<h2 class="page-header">Edit Projects</h2>
+<div class="item2">
+    <h2 class="page-header">Edit Projects</h2>
 
-<form method="POST" action="/projects/<%= project.id %>?_method=PUT ">
-    <%- include('_form_fields') %> 
-    <a href="/projects/<%= project.id %> ">Cancel</a>
-    <button type="submit">Update</button>
-</form>
+    <form method="POST" action="/projects/<%= project.id %>?_method=PUT ">
+        <%- include('_form_fields') %> 
+        <div class="form-row form-row-end btn-row">
+            <a class="btn btn-danger" href="/projects/<%= project.id %> ">Cancel</a>
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </form>
+</div>
