@@ -22,7 +22,7 @@ Upcoming Projects:
                     <br>
                     due in <%= secToDays((project.duedate1- new Date())) %> days
                 <% } else{ %> 
-                    over due <%= (now - duedate1) %> days
+                    over due <%= secToDays((new Date() - project.duedate1)) %> days
                 <% } %> 
         <% }); %> 
     </div>

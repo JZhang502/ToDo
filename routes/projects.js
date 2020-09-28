@@ -2,9 +2,10 @@ const express = require('express')
 const router = express.Router()
 const Project = require('../models/project')
 const Item = require('../models/items')
+const connectEnsureLogin = require('connect-ensure-login');
 
 //Show all projects
-router.get('/', async (req, res)=>{
+router.get('/', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     let query = Project.find()
     if (req.query.title != null && req.query.title != ''){
         query = query.regex('title', new RegExp(req.query.title, 'i')) 
@@ -27,12 +28,12 @@ router.get('/', async (req, res)=>{
     }
 })
 //New project Route
-router.get('/new', (req, res)=>{
+router.get('/new', connectEnsureLogin.ensureLoggedIn(), (req, res)=>{
     res.render('projects/new', {project: new Project})
 })
 
 //Create project route
-router.post('/', async (req, res)=>{
+router.post('/', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     const project = new Project({
         title: req.body.title,
         duedate1: new Date(req.body.duedate1.replace(/-/g, '\/').replace(/T.+/, ''))
@@ -72,7 +73,7 @@ router.post('/', async (req, res)=>{
 })
 
 //show projects
-router.get('/:id', async (req, res)=>{
+router.get('/:id', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     let projects
     try{
         const project = await Project.findById(req.params.id)
@@ -87,7 +88,7 @@ router.get('/:id', async (req, res)=>{
 
 })
 
-router.get('/:id/edit', async (req, res)=>{
+router.get('/:id/edit', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     try{
         const project = await Project.findById(req.params.id)
         res.render('projects/edit', {project:project})
@@ -95,7 +96,7 @@ router.get('/:id/edit', async (req, res)=>{
         res.redirect('/projects')
     }
 })
-router.put('/:id', async (req, res)=>{
+router.put('/:id', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     let project
     try{
         project = await Project.findById(req.params.id)
@@ -115,7 +116,7 @@ router.put('/:id', async (req, res)=>{
     }
 })
 //delete projects
-router.delete('/:id', async (req, res)=>{
+router.delete('/:id', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     let project
     try{
         project = await Project.findById(req.params.id)

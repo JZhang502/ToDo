@@ -2,9 +2,10 @@ const express = require('express')
 const router = express.Router()
 const Project = require('../models/project')
 const Item = require('../models/items')
+const connectEnsureLogin = require('connect-ensure-login');
 
 //All items
-router.get('/', async (req, res)=>{
+router.get('/', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     let query = Item.find()
     if(req.query.name != null && req.query.name != ''){
         query = query.regex('name', new RegExp(req.query.name, 'i'))
@@ -34,18 +35,18 @@ router.get('/', async (req, res)=>{
     }
 })
 //New items
-router.get('/new', async (req, res)=>{
+router.get('/new', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     renderNewPage(res, new Item())
 })
 
-router.get('/new/:id', (req, res)=>{
+router.get('/new/:id', connectEnsureLogin.ensureLoggedIn(), (req, res)=>{
     const id = req.params.id
     renderNewPage(res, new Item(), false, id)
 
 })
 
 //create item
-router.post('/', async(req, res)=>{
+router.post('/',connectEnsureLogin.ensureLoggedIn(), async(req, res)=>{
     const item = new Item({
         name: req.body.name,
         project: req.body.project,
@@ -61,7 +62,7 @@ router.post('/', async(req, res)=>{
     }
 })
 //item details
-router.get('/:id', async (req, res)=>{
+router.get('/:id',connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     try{
         const item = await Item.findById(req.params.id).populate('project').exec()
         res.render('items/show', {item:item, project:item.project})
@@ -70,7 +71,7 @@ router.get('/:id', async (req, res)=>{
     }
 })
 //Edit item
-router.get('/:id/edit', async (req, res)=>{
+router.get('/:id/edit', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     try{
         const item = await Item.findById(req.params.id)
         renderEditPage(res, item)
@@ -79,7 +80,7 @@ router.get('/:id/edit', async (req, res)=>{
     }
 })
 //update item
-router.put('/:id', async (req, res)=>{
+router.put('/:id', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     let item
     try {
         item = await Item.findById(req.params.id)
@@ -96,7 +97,7 @@ router.put('/:id', async (req, res)=>{
 })
 
 //delete item
-router.delete('/:id', async (req, res)=>{
+router.delete('/:id', connectEnsureLogin.ensureLoggedIn(), async (req, res)=>{
     let item
     try {
         item = await Item.findById(req.params.id)

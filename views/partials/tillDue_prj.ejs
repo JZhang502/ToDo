@@ -9,5 +9,5 @@
     Due in <%= secToDays((project.duedate1- new Date())) %> days
 </div>
 <% } else{ %> 
-    <div> Prj is over due <%= (new Date() - project.duedate1) %> days </div>
+    <div> Prj is over due <%= secToDays((new Date()- project.duedate1)) %> days </div>
 <% } %> 
